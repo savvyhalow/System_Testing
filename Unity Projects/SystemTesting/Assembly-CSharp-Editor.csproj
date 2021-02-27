@@ -266,16 +266,16 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -632,112 +632,112 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Subsystem.Registration">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARSubsystems">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARSubsystems.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.InteractionSubsystems">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.InteractionSubsystems.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.InteractionSubsystems.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.MockHMD">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.MockHMD.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.MockHMD.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.WindowsMixedReality.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.WindowsMixedReality.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.WindowsMixedReality.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.WindowsMixedReality">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.WindowsMixedReality.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.WindowsMixedReality.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.MockHMD.Editor">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.MockHMD.Editor.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/Unity.XR.MockHMD.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>E:/GitHub/conflict-detection/System Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>E:/GitHub/System_Testing/Unity Projects/SystemTesting/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

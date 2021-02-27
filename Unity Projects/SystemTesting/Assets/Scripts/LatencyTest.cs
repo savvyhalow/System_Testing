@@ -16,17 +16,16 @@ using NaturalPoint.NatNetLib;
 public class LatencyTest : MonoBehaviour
 {
     //Components used in Trial conditions
-    public int trial_Number;                         // The number of the trial
+    public int trial_Number;                                    // The number of the trial
     public int number_of_trials;
-    public bool latency_number_running;              // Bool for entering initials at begining of experiment, prevents accidental pausing at this phase    
+    public bool latency_number_running;                         // Bool for entering initials at begining of experiment, prevents accidental pausing at this phase    
 
     // Tracked Objects
-    public GameObject optitrack_Rigidbody;                      // The game object for keeping track of velocity
-    public GameObject steamVR_Camera;                           // The game object for using the raycaster
-    public OptitrackStreamingClient StreamingClient;            // Access to the streaming client script to grab position of the rigid body
-    private float current_opti_velocity;                        // Current velocity of tracked objects
-    private float current_steamvr_velocity;
+    public GameObject hmd;                                      // The game object for the HMD
+    private float current_velocity;                             // Current velocity of HMD
     public bool headset_is_moving = false;
+    private Queue position_queue;                                        // Queue for keeping track of the HMD's yaw for velocity calculation     
+    private Queue time_Queue;                                       // Time queue for velocity calculations  
 
     // Display physical update components
     public GameObject display_cube;
@@ -35,24 +34,19 @@ public class LatencyTest : MonoBehaviour
     public Material red;
 
     // Data Recording Components
-    public StreamWriter file1_Writer;                               // Creates/writes to files
-    public StreamWriter file2_Writer;
-
-    private Queue yaw_Queue;                                        // Queue for keeping track of optitrack yaw for velocity calculation     
-    private Queue steamvr_yaw_Queue;                                // Queue for keeping track of steamVR yaw for velocity calculation   
-    private Queue time_Queue;                                       // Time queue for velocity calculations    
-
+    public StreamWriter file_writer;                                // Creates/writes to files
     DateTime start_Experiment_Time;                                 // Time stamps
     public float current_Seconds;
     string time;
     public float reported_latency;                                  // Unity's reported update latency
 
     // Switching between types of tracking
-    public enum Tracking_Type
+    public enum Tracking_System
     {
-        Optitrack_Rigidbody_Tracking, Lighthouse_Tracking, OpenVR_Tracking
+        optitrack_tracking, basestation_tracking
     };
-    public Tracking_Type selected_Tracking_Type = Tracking_Type.Optitrack_Rigidbody_Tracking;     // Initiialize to OptiTrack as default
+    public Tracking_System t_system = Tracking_System.optitrack_tracking;     // Initiialize to OptiTrack as default
+
 
 
     // Use this for initialization
@@ -62,23 +56,33 @@ public class LatencyTest : MonoBehaviour
         trial_Number = 1;                                       // Set trial start
         number_of_trials = 100;
 
-        yaw_Queue = new Queue();                                // Initialize queues
-        steamvr_yaw_Queue = new Queue();
+        // Set type of tracking to be equivalent to gameobject used
+        if (t_system == Tracking_System.optitrack_tracking)
+        {
+            hmd = GameObject.Find("OptiTrack");
+        }
+        else if (t_system == Tracking_System.basestation_tracking)
+        {
+            hmd = GameObject.Find("BaseStation");
+        }
+        else
+        {
+            Debug.Log("No tracking system found.");
+        }
+
+        position_queue = new Queue();                                                   // Initialize queues
         time_Queue = new Queue();
 
-        display_cube = GameObject.Find("Display Cube");         // Initialize Cube
+        display_cube = GameObject.Find("Display Cube");                                 // Initialize Cube
         if (display_cube == null) Debug.Log("Didn't find cube");
+        display_cube.GetComponent<MeshRenderer>().material = green;                     // Make sure display starts green
 
-        // Write Files for Reported Latency
-        var file1_Name = selected_Tracking_Type + "_Latency_Test_" + DateTime.Now.ToString("MM-dd-yy-hh-mm-ss-ffff") + ".txt";
-        file1_Writer = File.CreateText(file1_Name);
-        file1_Writer.WriteLine("World Time ,Experiment Time ,Trial# ,Reported Latency");
+        // Create file for reported latency
+        var file_Name = t_system + "_Latency_Test_" + DateTime.Now.ToString("MM-dd-yy-hh-mm-ss-ffff") + ".txt";
+        file_writer = File.CreateText(file_Name);
+        file_writer.WriteLine("Time_of_Detected_Movement_World_Time ,Time_of_Detected_Movement_Experiment ,Trial_# ,Position_X ,Position_Y ,Position_Z ,Reported_Latency ");
+
         
-        var file2_Name = selected_Tracking_Type + "_Tracking_Data" + DateTime.Now.ToString("MM-dd-yy-hh-mm-ss-ffff") + ".txt";
-        file2_Writer = File.CreateText(file2_Name);
-        file2_Writer.WriteLine("World Time ,Experiment Time ,Trial# , SteamVR X ,SteamVR Y ,SteamVR Z , SteamVR Velocity, OptiTrack Rigidbody X,OptiTrack Rigidbody Y,OptiTrack Rigidbody Z, OptiTrack Rigidbody Velocity");
-
-        StartCoroutine(LatencyTester());
     }
 
 
@@ -89,7 +93,7 @@ public class LatencyTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))       // To end test early, hit Escape key
         {
-            file1_Writer.Close();
+            file_writer.Close();
             Application.Quit();
         }
 
@@ -111,118 +115,74 @@ public class LatencyTest : MonoBehaviour
         else
             time_between_last_2_frames = 0.0f;
 
-        // Yaw Queue for the GameObjects
-        var yaw_used_in_steamvr_Queue = steamVR_Camera.transform.localEulerAngles.y;                   // Keep track of yaw angle, past 6 values, dequeues
-        while (yaw_used_in_steamvr_Queue < -180) yaw_used_in_steamvr_Queue += 360;
-        while (yaw_used_in_steamvr_Queue > 180) yaw_used_in_steamvr_Queue -= 360;
-        steamvr_yaw_Queue.Enqueue(yaw_used_in_steamvr_Queue);
-        if (steamvr_yaw_Queue.Count > 6) steamvr_yaw_Queue.Dequeue();
-        var steamvr_yaw_array_float = steamvr_yaw_Queue.Cast<float>().ToArray();
-        float steamvr_yaw_diff = steamvr_yaw_array_float[steamvr_yaw_array_float.Length - 1] - steamvr_yaw_array_float[0];
 
-        current_steamvr_velocity = steamvr_yaw_diff / time_Diff;                                             // Use above values to calculate velocity
-        if (Math.Abs(current_steamvr_velocity) > 1.0)
+        // Position Queue for the HMD
+        var current_position = hmd.transform.position;                  // Keep track of yaw angle, past 6 values, dequeues
+
+        position_queue.Enqueue(current_position);                                                                   // Put current position into queue
+
+        if (position_queue.Count > 6) position_queue.Dequeue();                                                     // Dequeue after 6 - only keep position from last 6 frames
+        var position_array_float = position_queue.Cast<float>().ToArray();
+
+        float position_diff = position_array_float[position_array_float.Length - 1] - position_array_float[0];      // Calculate the difference in position between first and last frame
+
+        double stdev = 0;                                                   // Calculate the standard deviation between the last 6 frames
+        double avg = position_array_float.Average();
+        stdev = Math.Sqrt(position_array_float.Average(v => Math.Pow(v - avg, 2)));
+        current_velocity = position_diff / time_Diff;                      // Use above values to calculate velocity
+
+        //if (Math.Abs(current_velocity) > 1.0)                            // Can trigger coroutine from a velocity change
+        if (trial_Number < number_of_trials && Math.Abs(stdev) > 1.0)                                         // Trigger coroutine based on change in standard deviation of the position
         {
             Debug.Log("Headset is moving");
             headset_is_moving = true;
-
+            StartCoroutine(LatencyTester());         
         }
         else
         {
             Debug.Log("Headset is still");
             headset_is_moving = false;
-        }
-
-
-        if (selected_Tracking_Type != Tracking_Type.Lighthouse_Tracking)
-        {
-            var yaw_used_in_Queue = optitrack_Rigidbody.transform.localEulerAngles.y;                         // Repeat for OptiTrack GameObject
-            while (yaw_used_in_Queue < -180) yaw_used_in_Queue += 360;
-            while (yaw_used_in_Queue > 180) yaw_used_in_Queue -= 360;
-            yaw_Queue.Enqueue(yaw_used_in_Queue);
-            if (yaw_Queue.Count > 6) yaw_Queue.Dequeue();
-            var yaw_array_float = yaw_Queue.Cast<float>().ToArray();
-            float yaw_diff = yaw_array_float[yaw_array_float.Length - 1] - yaw_array_float[0];
-
-            current_opti_velocity = yaw_diff / time_Diff;
-            if (Math.Abs(current_opti_velocity) > 1.0)
-            {
-                Debug.Log("Headset is moving");
-                headset_is_moving = true;
-            }
-            else
-            {
-                Debug.Log("Headset is still");
-                headset_is_moving = false;
-            }
-
-            file2_Writer.WriteLine(DateTime.Now + ","
-                + current_Seconds + ","
-                + trial_Number + ","
-                + steamVR_Camera.transform.localEulerAngles.x + ","
-                + steamVR_Camera.transform.localEulerAngles.y + ","
-                + steamVR_Camera.transform.localEulerAngles.z + ","
-                + current_steamvr_velocity + ","
-                + optitrack_Rigidbody.transform.localEulerAngles.x + ","
-                + optitrack_Rigidbody.transform.localEulerAngles.y + ","
-                + optitrack_Rigidbody.transform.localEulerAngles.z + ","
-                + current_opti_velocity);
-        }
-        else
-        {
-            file2_Writer.WriteLine(DateTime.Now + ","
-            + current_Seconds + ","
-            + trial_Number + ","
-            + steamVR_Camera.transform.localEulerAngles.x + ","
-            + steamVR_Camera.transform.localEulerAngles.y + ","
-            + steamVR_Camera.transform.localEulerAngles.z + ","
-            + current_steamvr_velocity);
-        }
-        //**********************************        
-
+        }   
     }
+
 
     private IEnumerator LatencyTester()
     {
-        while (trial_Number < number_of_trials)                                              // Continue until desired number of trials is achieved
-        {
-            Debug.Log("Trial Number:  " + trial_Number);
-            display_cube.GetComponent<MeshRenderer>().material = green;
+        Debug.Log("Trial Number:  " + trial_Number);
 
-            while (!headset_is_moving)                                                      // Look for movement, do notchange display until we notice a change in velocity   
-            {
-                yield return null;
-            }
+        display_cube.GetComponent<MeshRenderer>().material = white;                         // Update Display to indicate movement
 
-            var move_Time = DateTime.Now;                                                   // Grab time that movement is detected
-            TimeSpan move_TimeSpan = move_Time - start_Experiment_Time;
-            float move_time_milliseconds = move_TimeSpan.Milliseconds;
-
-            display_cube.GetComponent<MeshRenderer>().material = white;                     // Update Display tp indicate movement
-
+        var move_Time = DateTime.Now;                                                   // Grab time that movement is detected
+        TimeSpan move_TimeSpan = move_Time - start_Experiment_Time;
+        float move_time_milliseconds = move_TimeSpan.Milliseconds;
+        /*
             var update_time = DateTime.Now;
             TimeSpan update_timeSpan = update_time - start_Experiment_Time;
             float update_time_milliseconds = update_timeSpan.Milliseconds;
             float reported_latency = update_time_milliseconds - move_time_milliseconds;     // Determine if unity detects any latency between movement detection and update
+            */
 
-            file1_Writer.WriteLine(DateTime.Now + "," + current_Seconds + "," + trial_Number + "," + reported_latency);
-            trial_Number++;                                                                 // Increment and record data
+        //     file_Writer.WriteLine("Time_of_Detected_Movement_World_Time ,Time_of_Detected_Movement_Experiment ,Trial_# ,Position_X ,Position_Y ,Position_Z ,Reported_Latency ");
 
-            yield return new WaitForSeconds(1.0f);                                          // Wait for one second before updating
+        file_writer.WriteLine(DateTime.Now + "," + current_Seconds + "," + trial_Number + "," + reported_latency);
+        trial_Number++;                                                                 // Increment and record data
 
-            display_cube.GetComponent<MeshRenderer>().material = red;                       // Update Display to red as long as it continues to move
-            yield return new WaitForSeconds(1.0f);                                          // Wait before checking if headset is still
+        yield return new WaitForSeconds(1.0f);                                          // Wait for one second before updating
+        display_cube.GetComponent<MeshRenderer>().material = red;                       // Update Display to red as long as it continues to move
+        yield return new WaitForSeconds(1.0f);                                          // Wait before checking if headset is still
 
-            while (headset_is_moving)                                                       // Don't start next loop until headset is still
-            {
-                yield return null;
-            }
-
-            display_cube.GetComponent<MeshRenderer>().material = green;                     // Indicate display is ready
-
+        while (headset_is_moving)                                                       // Don't start next loop until headset is still
+        {
+            yield return null;
         }
-        file1_Writer.Close();
-        Application.Quit();
+
+        display_cube.GetComponent<MeshRenderer>().material = green;                         // Indicate display is ready
+
+        if (trial_Number > number_of_trials)                                                // End the latency test
+        {
+            file_writer.Close();
+            Application.Quit();
+        }
     }
 }
 
